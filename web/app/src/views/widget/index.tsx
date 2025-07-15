@@ -286,28 +286,7 @@ const Widget = () => {
         placeholder={widget?.settings?.search_placeholder || '请输入问题'}
       />}
     </Box>
-    <Stack direction={'row'} alignItems={'center'} gap={1} justifyContent={'center'} sx={{
-      height: 24,
-      fontSize: 12,
-      bgcolor: themeMode === 'light' ? 'light.main' : 'dark.light',
-      a: {
-        color: 'primary.main'
-      }
-    }}>
-      本插件由
-      <Link href={'https://pandawiki.docs.baizhi.cloud/'} target='_blank' prefetch={false}>
-        <Stack direction={'row'} alignItems={'center'} gap={0.5} sx={{
-          cursor: 'pointer',
-          '&:hover': {
-            color: 'primary.main',
-          }
-        }}>
-          <IconLogo sx={{ fontSize: 16 }} />
-          <Box sx={{ fontWeight: 'bold' }}>PandaWiki</Box>
-        </Stack>
-      </Link>
-      提供技术支持
-    </Stack>
+
   </>
 };
 

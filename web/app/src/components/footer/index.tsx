@@ -1,7 +1,5 @@
-import logo from '@/assets/images/logo.png';
 import { useStore } from '@/provider';
 import { Box, Divider, Stack } from "@mui/material";
-import Image from "next/image";
 import Link from 'next/link';
 
 const Footer = ({ showBrand = true, fullWidth = false }: { showBrand?: boolean, fullWidth?: boolean }) => {
@@ -24,10 +22,9 @@ const Footer = ({ showBrand = true, fullWidth = false }: { showBrand?: boolean, 
     {footerSetting?.footer_style === 'complex' && showBrand && <Box sx={{ pt: 5, pb: 2 }}>
       <Box sx={{ mb: 3 }}>
         <Stack direction={'row'} alignItems={'center'} gap={1}>
-          {footerSetting?.brand_logo && <img src={footerSetting.brand_logo} alt="PandaWiki" width={24} height={24} />}
           <Box sx={{ fontWeight: 'bold', lineHeight: '32px', fontSize: 24, color: 'text.primary' }}>{footerSetting?.brand_name}</Box>
         </Stack>
-        {footerSetting?.brand_desc && <Box sx={{ fontSize: 12, color: 'text.secondary', lineHeight: '26px', ml: footerSetting?.brand_logo ? 4 : 0, mt: 2 }}>
+        {footerSetting?.brand_desc && <Box sx={{ fontSize: 12, color: 'text.secondary', lineHeight: '26px', mt: 2 }}>
           {footerSetting.brand_desc}
         </Box>}
       </Box>
@@ -58,21 +55,7 @@ const Footer = ({ showBrand = true, fullWidth = false }: { showBrand?: boolean, 
     {!!footerSetting?.icp && <Box sx={{ height: 40, lineHeight: '40px', color: 'text.tertiary' }}>
       {footerSetting?.icp}
     </Box>}
-    <Stack direction={'row'} alignItems={'center'} gap={0.5} sx={{ height: 40, lineHeight: '40px' }}>
-      本网站由
-      <Link href={'https://pandawiki.docs.baizhi.cloud/'} target='_blank' prefetch={false}>
-        <Stack direction={'row'} alignItems={'center'} gap={0.5} sx={{
-          cursor: 'pointer',
-          '&:hover': {
-            color: 'primary.main',
-          }
-        }}>
-          <Image src={logo.src} alt="PandaWiki" width={16} height={16} />
-          <Box sx={{ fontWeight: 'bold' }}>PandaWiki</Box>
-        </Stack>
-      </Link>
-      提供技术支持
-    </Stack>
+
   </Box>
 
   return <Box id='footer' sx={{
@@ -96,7 +79,6 @@ const Footer = ({ showBrand = true, fullWidth = false }: { showBrand?: boolean, 
       <Stack direction={'row'} justifyContent={'space-between'} gap={10}>
         <Box sx={{ width: '30%', minWidth: 200 }}>
           {footerSetting?.brand_name && <Stack direction={'row'} alignItems={'center'} gap={1} sx={{ mb: 2 }}>
-            {footerSetting?.brand_logo && <img src={footerSetting.brand_logo} alt="PandaWiki" width={24} height={24} />}
             <Box sx={{ fontWeight: 'bold', lineHeight: '32px', fontSize: 20, color: 'text.primary' }}>{footerSetting?.brand_name}</Box>
           </Stack>}
           {footerSetting?.brand_desc && <Box sx={{ fontSize: 12, lineHeight: '26px' }}>
@@ -132,21 +114,7 @@ const Footer = ({ showBrand = true, fullWidth = false }: { showBrand?: boolean, 
           {!!footerSetting?.corp_name && !!footerSetting?.icp && !mobile && <Divider orientation='vertical' sx={{ mx: 0.5, height: 16 }} />}
           {!!footerSetting?.icp && <Link href={`https://beian.miit.gov.cn/`} target='_blank' prefetch={false}>{footerSetting?.icp}</Link>}
         </Stack>
-        <Stack direction={'row'} alignItems={'center'} gap={0.5} sx={{ color: 'text.secondary' }}>
-          本网站由
-          <Link href={'https://pandawiki.docs.baizhi.cloud/'} prefetch={false} target='_blank'>
-            <Stack direction={'row'} alignItems={'center'} gap={0.5} sx={{
-              cursor: 'pointer',
-              '&:hover': {
-                color: 'primary.main',
-              }
-            }}>
-              <Image src={logo.src} alt="PandaWiki" width={16} height={16} />
-              <Box sx={{ fontWeight: 'bold' }}>PandaWiki</Box>
-            </Stack>
-          </Link>
-          提供技术支持
-        </Stack>
+
       </Stack>
     </Box>
   </Box>

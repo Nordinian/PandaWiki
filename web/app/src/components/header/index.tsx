@@ -3,12 +3,12 @@
 import Logo from '@/assets/images/logo.png';
 import { IconSearch } from "@/components/icons";
 import { useStore } from "@/provider";
-import { Box, Button, IconButton, Stack, TextField } from "@mui/material";
+import { Box, IconButton, Stack, TextField } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from 'react';
-import NavBtns from './NavBtns';
+
 
 const Header = () => {
   const router = useRouter();
@@ -100,18 +100,8 @@ const Header = () => {
             />
           }}
         />)}
-      {!mobile && kbDetail?.settings?.btns?.map((item, index) => (
-        <Link key={index} href={item.url} target={item.target} prefetch={false}>
-          <Button
-            variant={item.variant}
-            startIcon={item.showIcon && item.icon ? <img src={item.icon} alt='logo' width={24} height={24} /> : null}
-            sx={{ textTransform: 'none' }}
-          >
-            <Box sx={{ lineHeight: '24px' }}>{item.text}</Box>
-          </Button>
-        </Link>
-      ))}
-      {mobile && <NavBtns detail={kbDetail} />}
+
+      
     </Stack>
   </Stack>
 }
