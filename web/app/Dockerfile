@@ -1,4 +1,4 @@
-# Dockerfile for PandaWiki web/app (Next.js)
+# Dockerfile for PandaWiki web/app (Next.js) with standalone output
 
 # Stage 1: Build the Next.js application
 FROM node:20-slim AS builder
@@ -20,21 +20,24 @@ COPY . .
 # Build the application
 RUN pnpm build
 
+
 # Stage 2: Production image
 FROM node:20-slim AS runner
 WORKDIR /app
 
-# Set environment variables
+# Set environment variable
 ENV NODE_ENV=production
 
-# Copy built assets from the builder stage
+# Copy the standalone output from the builder stage.
+# This includes the server and minimal node_modules.
+COPY --from=builder /app/dist/standalone ./
+
+# Copy the public folder and the static assets from the build output
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/dist/static ./dist/static
 
 # Expose the port the app runs on
 EXPOSE 3000
 
-# Start the application
-CMD ["pnpm", "start"]
+# Start the application using the standalone server.js
+CMD ["node", "dist/server.js"]
